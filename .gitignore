@@ -15,3 +15,5 @@ data/db/*.db-shm
 Thumbs.db
 
 data/cards/_backup*/
+
+*.pdf
