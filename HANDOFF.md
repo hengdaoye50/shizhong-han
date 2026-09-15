@@ -1,56 +1,50 @@
-# 交接摘要（2026-09-13）
+# 交接摘要（2026-09-15 巡检后）
 
 ## 项目是什么
-两汉侍中数据库：人物卡片 + 任职 + 关系 + 可检索本地库 + 静态 Web。
+两汉侍中数据库：人物卡片 + 任职 + 关系 + 生平（独立）+ SQLite + 静态 Web。
 
-## 数据现状（可信）
-- 语料：`data/raw/`（前四史维基+mirror、隸釋/續、東觀漢記、前後漢紀、全兩漢文、集古錄/金石錄）
-- 候选句：`data/candidates/shizhong_candidates.csv`（约 1774）
-- 人物卡：`data/cards/`（约 259 人；约 95 人已写全履历；制度卡 1 张已排除出时间轴）
-- SQLite：`data/db/shizhong.db`
-  - person 259 · source/term ~467 · relation 433
-  - 郑玄=被表侍中未行；庾峻=晋附录
-  - person 增列：`year_precision` / `term_start_year` / `term_end_year` / `term_label`
-- 统计导出：`data/exports/`
-- 统计说明：`docs/stats_usage.md`
+## Git 同步状态（重要）
+- **本地文件已全部更新**（卡片/库/前端/README/CLAUDE/HANDOFF）
+- **GitHub 远端仍停在 init/docs 旧提交**，约 300+ 变更未 commit
+- 新增未跟踪：`about.html`、`bio.json`、`sources/hans.py`、清洗/富化脚本、`sources/_archive/`、`docs/audits/` 等
+- 推送前请先人工 `git status` / `git diff` 审阅；**勿含** `preview_shots/`、`*.db.bak`、商业 PDF
 
-## 前端现状
-- 目录：`shizhongdata/` → 拷到 Hugo `static/shizhongdata/` 部署 `jinhuazhang.top/shizhongdata/`
-- 本地预览：`& $env:MIMO_PYTHON -m http.server 8765 --directory shizhongdata`
-- 首页：暗色关系图谱（转速已降）+ 名录检索
-- 时间轴：`timeline.html` — **已重做，见下**
+## 规模（已校验一致）
+- 卡片 **258** = 库 person **258** = Web **258**
+- term 248 · source ~412 · relation 432 · person_bio 147 有实义
+- 时间轴上轴 **164**（era31/reign82/exact51）· 仅朝代 **94**
+- Web 筛选组：西汉60 东汉140 魏15 汉魏之际14 蜀汉11 吴8 新5 晋3 更始2
+- 图谱节点 104（均在库内）
 
-## 时间轴方法（2026-09-13 已修）
-不再为「仅知朝代」者画整段假横条。三级精度：
-
-| 精度 | 条件 | 画法 | 当前人数 |
-|------|------|------|----------|
-| era | 年号可定（建武二十年/嘉禾中） | 实心点 | 10 |
-| reign | 帝号在位期（灵帝时/哀平间） | 半透明宽带 | 45 |
-| exact | 生卒可考 | 淡寿命条（可选开关） | 51 |
-| dynasty | 仅朝代 | **不画个人条**，进朝代聚合卡 | 152 |
-
-- 脚本：`sources/build_timeline.py`（重写：帝号表 + 年号消歧 + 含侍中分句优先）
-- 数据：`shizhongdata/data/timeline.json`（items=可定位 106，aggregates=11 组）
-- 前端：`shizhongdata/assets/timeline.js` + `timeline.html`
-- 横轴为**折线刻度**（汉末—三国拉宽）；魏/蜀/吴三条并行细带，避免同时代叠色
-- 制度卡（佚名侍中）不进时间轴
-- nature 占位「见原典…」只算朝代级，不再当线索
-
-## 常用命令
-```powershell
-& $env:MIMO_PYTHON sources/query_db.py --stats
-& $env:MIMO_PYTHON sources/export_web_json.py
-& $env:MIMO_PYTHON sources/export_graph_json.py
-& $env:MIMO_PYTHON sources/build_timeline.py
+## 目录（整理后）
+```
+data/{raw,cards,candidates,bio,db,exports}
+sources/          # 核心流水线，见 sources/README.md
+sources/_archive/ # 一次性挖掘脚本
+shizhongdata/     # 静态站（index/timeline/about）
+vendors/          # 镜像 + books/ 参考 PDF
+docs/audits/      # 巡检报告
+preview_shots/    # 截图（建议不入 git）
 ```
 
-## 设计约束
-- 主色 rgb(126,12,110) #7E0C6E
-- 前端不展示「待审/草稿」
-- 毛玻璃已弃用；首页暗色档案风；时间轴浅色纸本档案
-- 新会话可继续：补更多人年号/生卒以提高上轴率、或关系边/导出/论文统计
+## 核心命令
+```powershell
+& $env:MIMO_PYTHON sources/cleanup_cards_db.py
+& $env:MIMO_PYTHON sources/enrich_year_clues.py
+& $env:MIMO_PYTHON sources/fix_dup_quote_lines.py
+& $env:MIMO_PYTHON sources/build_bio_store.py
+& $env:MIMO_PYTHON sources/export_web_json.py
+& $env:MIMO_PYTHON sources/build_timeline.py
+& $env:MIMO_PYTHON sources/export_graph_json.py
+```
 
-## 新会话开场建议
-读 `CLAUDE.md` + 本文件。时间轴已按精度分级，勿回退到「朝代窗口当任职期」。
-若继续打磨：优先补 nature 中的年号/帝号线索（卡片校录），而非改可视化。
+## 巡检结论
+- 卡片/库/Web/时间轴 ID 对齐，无制度卡、无重复 id
+- relation 端点含帝号与非侍中人物（诸葛亮、董卓等）属设计如此
+- 已修：晋字、两汉筛选简繁不匹配、朝代组归并、全站浅色主题
+
+## 下一步
+1. **审阅后 commit + push 到 GitHub**（当前最大缺口）
+2. 人工审 `data/candidates/enrich_raw_hits.json`
+3. 向 200+ 推生平
+4. 部署 Hugo static

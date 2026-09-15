@@ -9,11 +9,13 @@ __pycache__/
 data/db/*.db-journal
 data/db/*.db-wal
 data/db/*.db-shm
+data/db/*.bak*
+data/db/*.bak-*
 
-# 系统
+# 系统与临时
 .DS_Store
 Thumbs.db
-
 data/cards/_backup*/
-
 *.pdf
+_preview/
+preview_shots/

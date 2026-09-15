@@ -9,14 +9,20 @@
 
   const COLORS = {
     西漢: "#7e0c6e",
+    西汉: "#7e0c6e",
     新: "#9a1a6e",
     更始: "#b04a9a",
     東漢: "#a33d90",
+    东汉: "#a33d90",
     漢魏之際: "#8a5aaa",
+    汉魏之际: "#8a5aaa",
     魏: "#6b3fc4",
     蜀漢: "#b03a6a",
+    蜀汉: "#b03a6a",
     吳: "#3d6fb5",
+    吴: "#3d6fb5",
     晉: "#5a4a9a",
+    晋: "#5a4a9a",
   };
 
   const PREC_LABEL = {
@@ -76,21 +82,39 @@
 
   function colorOf(dyn) {
     if (!dyn) return "#a33d90";
-    if (dyn.includes("西漢")) return COLORS["西漢"];
-    if (dyn.includes("東漢") && !dyn.includes("漢魏")) return COLORS["東漢"];
+    if (dyn.includes("西汉") || dyn.includes("西漢")) return COLORS["西汉"];
+    if ((dyn.includes("东汉") || dyn.includes("東漢")) && !dyn.includes("汉魏") && !dyn.includes("漢魏"))
+      return COLORS["东汉"];
     if (dyn === "魏" || dyn.startsWith("魏_") || dyn.endsWith("_魏")) return COLORS["魏"];
-    if (dyn.includes("蜀")) return COLORS["蜀漢"];
-    if (dyn.includes("吳") || dyn.includes("吴")) return COLORS["吳"];
-    if (dyn.includes("漢魏")) return COLORS["漢魏之際"];
+    if (dyn.includes("蜀汉") || dyn.includes("蜀漢")) return COLORS["蜀汉"];
+    if (dyn.includes("吴") || dyn.includes("吳")) return COLORS["吴"];
+    if (dyn.includes("汉魏") || dyn.includes("漢魏")) return COLORS["汉魏之际"];
+    if (dyn.includes("晋") || dyn.includes("晉")) return COLORS["晋"];
     return COLORS[dyn] || "#8a5aaa";
+  }
+
+  function isHanDynasty(d) {
+    if (!d) return false;
+    // 兼容简繁与复合朝代标签
+    return (
+      d.includes("西汉") ||
+      d.includes("西漢") ||
+      d.includes("东汉") ||
+      d.includes("東漢") ||
+      d === "两汉" ||
+      d === "兩漢" ||
+      d.includes("更始") ||
+      d === "新" ||
+      d.includes("西汉_") ||
+      d.includes("东汉_") ||
+      d.includes("更始_")
+    );
   }
 
   function inFilter(it) {
     if (filter === "all") return true;
     const d = it.dynasty || "";
-    const isHan =
-      d.includes("西漢") || d.includes("東漢") || d === "兩漢" || d === "更始" || d === "新";
-    return filter === "han" ? isHan : !isHan;
+    return filter === "han" ? isHanDynasty(d) : !isHanDynasty(d);
   }
 
   function fmtYear(y) {
@@ -339,11 +363,11 @@
     // 朝代色带（三国并行细带，避免同时代叠色）
     const threeKs = [
       { name: "魏", start: 220, end: 265 },
-      { name: "蜀漢", start: 221, end: 263 },
-      { name: "吳", start: 222, end: 280 },
+      { name: "蜀汉", start: 221, end: 263 },
+      { name: "吴", start: 222, end: 280 },
     ];
     const mainBands = (data.bands || []).filter(
-      (b) => b.name !== "魏" && b.name !== "蜀漢" && b.name !== "吳"
+      (b) => b.name !== "魏" && b.name !== "蜀汉" && b.name !== "吴" && b.name !== "蜀漢" && b.name !== "吳"
     );
 
     function drawBandRect(b, y, h, opts) {
@@ -514,10 +538,7 @@
     document.getElementById("tl-agg-count").textContent = (data.aggregates || [])
       .filter((a) => {
         if (filter === "all") return true;
-        const d = a.dynasty || "";
-        const isHan =
-          d.includes("西漢") || d.includes("東漢") || d === "兩漢" || d === "更始" || d === "新";
-        return filter === "han" ? isHan : !isHan;
+        return filter === "han" ? isHanDynasty(a.dynasty || "") : !isHanDynasty(a.dynasty || "");
       })
       .reduce((s, a) => s + (a.count || 0), 0);
 
@@ -552,10 +573,7 @@
     if (!aggEl || !data) return;
     const aggs = (data.aggregates || []).filter((a) => {
       if (filter === "all") return true;
-      const d = a.dynasty || "";
-      const isHan =
-        d.includes("西漢") || d.includes("東漢") || d === "兩漢" || d === "更始" || d === "新";
-      return filter === "han" ? isHan : !isHan;
+      return filter === "han" ? isHanDynasty(a.dynasty || "") : !isHanDynasty(a.dynasty || "");
     });
     aggEl.innerHTML = aggs
       .map((a) => {

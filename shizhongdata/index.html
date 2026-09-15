@@ -6,14 +6,15 @@
   <title>两汉侍中数据库 · Shizhong of the Han</title>
   <meta name="description" content="两汉可考侍中人物卡片、任职履历与关系图谱" />
   <link rel="stylesheet" href="assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
       <div>
-        <p class="brand-kicker">Jinhua Zhang · Research</p>
-        <h1 class="brand-title">两汉侍中数据库</h1>
+        <h1 class="brand-title brand-title--calli">两汉侍中数据库</h1>
       </div>
     </div>
     <div class="header-meta">
@@ -22,10 +23,15 @@
       <span id="stat-relations">—</span> 关系
       <span class="dot"></span>
       <span id="stat-sources">—</span> 史料
-      <span class="dot"></span>
-      <a href="timeline.html" class="nav-link">时间轴</a>
     </div>
   </header>
+
+  <nav class="site-nav" aria-label="站点导航">
+    <a href="index.html" class="active">图谱名录</a>
+    <a href="timeline.html">时间轴</a>
+    <a href="about.html">方法说明</a>
+    <a class="nav-ext" href="https://github.com/hengdaoye50/shizhong-han" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
 
   <section class="graph-stage" aria-label="侍中关系图谱">
     <canvas id="graph-canvas"></canvas>

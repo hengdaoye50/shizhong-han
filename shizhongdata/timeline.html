@@ -5,33 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>侍中时间轴 · 两汉侍中数据库</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
   <style>
-    /* 时间轴页：偏纸本档案，与暗色名录区分，但保持同一套紫主色 */
-    body.tl-theme {
-      background:
-        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(126,12,110,0.08), transparent 55%),
-        linear-gradient(180deg, #faf6f9 0%, #f3ebf3 40%, #ebe0eb 100%);
-      background-attachment: fixed;
-      color: #1a0a18;
+    /* 全站已统一浅色纸本；本页仅保留时间轴专用布局 */
+    body.tl-theme .site-nav {
+      top: 0;
     }
-    body.tl-theme::before { display: none; }
-    body.tl-theme .site-header {
-      background: rgba(255,252,255,0.92);
-      border-bottom: 1px solid rgba(126,12,110,0.12);
-      color: #1a0a18;
-    }
-    body.tl-theme .brand-title { color: #1a0a18; }
-    body.tl-theme .brand-kicker { color: #8a6d84; }
-    body.tl-theme .header-meta { color: #5c4558; }
-    body.tl-theme .nav-link {
-      color: #7e0c6e;
-      border-color: rgba(126,12,110,0.25);
-    }
-    body.tl-theme .site-footer {
-      color: #8a6d84;
-      border-top: 1px solid rgba(126,12,110,0.1);
-    }
-
     .tl-intro {
       max-width: 960px;
       margin: 0 auto;
@@ -254,20 +235,23 @@
 <body class="tl-theme">
   <header class="site-header">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
       <div>
-        <p class="brand-kicker">Chronology</p>
-        <h1 class="brand-title"><a href="index.html" style="color:inherit;text-decoration:none">两汉侍中</a> · 时间轴</h1>
+        <h1 class="brand-title brand-title--calli">两汉侍中数据库</h1>
       </div>
     </div>
     <div class="header-meta">
       <span id="tl-count">—</span> 人上轴
       <span class="dot"></span>
       <span id="tl-agg-count">—</span> 人仅朝代
-      <span class="dot"></span>
-      <a href="index.html" class="nav-link">关系图谱</a>
     </div>
   </header>
+
+  <nav class="site-nav" aria-label="站点导航">
+    <a href="index.html">图谱名录</a>
+    <a href="timeline.html" class="active">时间轴</a>
+    <a href="about.html">方法说明</a>
+    <a class="nav-ext" href="https://github.com/hengdaoye50/shizhong-han" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
 
   <section class="tl-intro">
     <h2>谁在何时居侍中</h2>

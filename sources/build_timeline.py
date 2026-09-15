@@ -14,7 +14,11 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from hans import t2s
 
 ROOT = Path(__file__).resolve().parents[1]
 CARDS = ROOT / "data" / "cards"
@@ -43,12 +47,12 @@ DYN_WINDOW = {
 }
 
 BANDS = [
-    {"name": "西漢", "start": -202, "end": 8},
+    {"name": "西汉", "start": -202, "end": 8},
     {"name": "新", "start": 9, "end": 23},
-    {"name": "東漢", "start": 25, "end": 220},
+    {"name": "东汉", "start": 25, "end": 220},
     {"name": "魏", "start": 220, "end": 265},
-    {"name": "蜀漢", "start": 221, "end": 263},
-    {"name": "吳", "start": 222, "end": 280},
+    {"name": "蜀汉", "start": 221, "end": 263},
+    {"name": "吴", "start": 222, "end": 280},
 ]
 
 # ---------------------------------------------------------------------------
@@ -398,7 +402,7 @@ def parse_card(p: Path):
     return {
         "id": grab("id"),
         "name": grab("name"),
-        "dynasty": grab("dynasty"),
+        "dynasty": t2s(grab("dynasty")),
         "style_name": grab("style_name"),
         "category": grab("category"),
         "birth": grab("birth"),

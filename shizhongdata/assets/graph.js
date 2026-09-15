@@ -159,9 +159,11 @@
       function draw() {
         ctx.clearRect(0, 0, W, H);
 
-        // soft vignette
+        // 浅色纸本底 + 柔和紫晕
+        ctx.fillStyle = "#fffafd";
+        ctx.fillRect(0, 0, W, H);
         const g0 = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, Math.max(W, H) * 0.55);
-        g0.addColorStop(0, "rgba(126,12,110,0.18)");
+        g0.addColorStop(0, "rgba(126,12,110,0.1)");
         g0.addColorStop(1, "rgba(126,12,110,0)");
         ctx.fillStyle = g0;
         ctx.fillRect(0, 0, W, H);
@@ -175,7 +177,7 @@
           const a = project(l.source);
           const b = project(l.target);
           const depth = (a.s + b.s) * 0.5;
-          const alpha = 0.12 + depth * 0.22;
+          const alpha = 0.18 + depth * 0.28;
           ctx.strokeStyle = `rgba(126,12,110,${alpha})`;
           ctx.beginPath();
           ctx.moveTo(a.sx, a.sy);
@@ -192,7 +194,7 @@
 
           // glow
           const glow = ctx.createRadialGradient(p.sx, p.sy, r * 0.2, p.sx, p.sy, r * 2.8);
-          glow.addColorStop(0, `rgba(163,61,144,${0.25 * p.s})`);
+          glow.addColorStop(0, `rgba(163,61,144,${0.2 * p.s})`);
           glow.addColorStop(1, "rgba(163,61,144,0)");
           ctx.fillStyle = glow;
           ctx.beginPath();
@@ -208,7 +210,7 @@
             p.sy,
             r
           );
-          grad.addColorStop(0, isHover ? "rgba(255,255,255,0.95)" : "rgba(232,160,220,0.95)");
+          grad.addColorStop(0, isHover ? "rgba(255,255,255,0.9)" : "rgba(200,120,180,0.95)");
           grad.addColorStop(1, col);
           ctx.fillStyle = grad;
           ctx.beginPath();
@@ -216,7 +218,7 @@
           ctx.fill();
 
           // rim
-          ctx.strokeStyle = `rgba(255,255,255,${0.25 + 0.35 * p.s})`;
+          ctx.strokeStyle = isHover ? "rgba(126,12,110,0.55)" : "rgba(126,12,110,0.25)";
           ctx.lineWidth = isHover ? 1.6 : 0.8;
           ctx.stroke();
         }

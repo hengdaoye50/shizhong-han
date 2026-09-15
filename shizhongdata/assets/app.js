@@ -4,6 +4,7 @@
 
   const state = {
     data: null,
+    bios: {},
     query: "",
     dynasty: "全部",
     sort: "dynasty",
@@ -18,11 +19,22 @@
   async function load() {
     const res = await fetch("data/shizhong.json");
     state.data = await res.json();
+    // 生平独立库（可失败，不影响主数据）
+    try {
+      const bres = await fetch("data/bio.json");
+      if (bres.ok) {
+        const bdata = await bres.json();
+        state.bios = bdata.bios || {};
+      }
+    } catch (e) {
+      console.warn("bio load failed", e);
+    }
     const m = state.data.meta;
     $("#stat-persons").textContent = m.person_count;
     $("#stat-relations").textContent = m.relation_count;
     $("#stat-sources").textContent = m.source_count;
-    $("#updated").textContent = "更新 " + m.updated;
+    const upd = $("#updated");
+    if (upd) upd.textContent = "更新 " + m.updated;
     renderFilters();
     render();
     await initGraph();
@@ -175,11 +187,23 @@
     const body = $("#detail-body");
     const relOut = (p.relations_out || []).filter((r) => r.to_name);
     const relIn = (p.relations_in || []).filter((r) => r.to_name);
+    const bio = (state.bios && state.bios[id]) || null;
 
     body.innerHTML = `
       <p class="sub" style="margin-top:8px">${escapeHtml(p.dynasty)}${p.category ? " · " + escapeHtml(p.category) : ""}</p>
       <h2>${escapeHtml(p.name)}${p.style_name && p.style_name !== "阙" ? ` <span style="font-size:0.7em;font-weight:400;color:var(--ink-3)">字 ${escapeHtml(p.style_name)}</span>` : ""}</h2>
       <p class="sub">${[p.origin, p.birth, p.death].filter((x) => x && x !== "阙").map(escapeHtml).join(" · ") || "籍贯生卒待考"}</p>
+
+      ${
+        bio && bio.lines && bio.lines.length
+          ? `<section>
+        <h3>生平 <span style="font-size:0.7em;font-weight:400;color:var(--ink-3)">独立生平库</span></h3>
+        <ol class="bio-list">
+          ${bio.lines.map((ln) => `<li>${escapeHtml(ln)}</li>`).join("")}
+        </ol>
+      </section>`
+          : ""
+      }
 
       <section>
         <h3>任职</h3>

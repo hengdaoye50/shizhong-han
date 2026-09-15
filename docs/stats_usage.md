@@ -31,7 +31,7 @@ SQLite 五表（可 SQL）：`person` · `source` · `shizhong_term` · `relatio
 | name | 文本 | 姓名 |
 | style_name | 文本 | 字 |
 | dynasty | 文本 | 原始朝代串（可含复合） |
-| dynasty_primary | 文本 | **归一朝代**：西漢/東漢/新/更始/漢魏之際/魏/蜀漢/吳/晉/兩漢 |
+| dynasty_primary | 文本 | **归一朝代**：西汉/东汉/新/更始/汉魏之际/魏/蜀汉/吴/晋/两汉 |
 | category | 文本 | 类属原文 |
 | origin | 文本 | 籍贯 |
 | birth / death | 文本 | 原文纪年（可含「阙」） |
