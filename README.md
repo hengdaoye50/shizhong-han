@@ -123,10 +123,11 @@ shizhongdata/             静态站（可部署个人域名子路径）
 | **shizhong_term** | 一人多行任职 | person_id, start/end_ym, start/end_year, nature, evidence |
 | **source** | 出处条 | book, juan, quote, path |
 | **relation** | 边 | from/to_id, from/to_name, rel_primary, is_kinship/patron/conflict |
+| **person_bio** | 生平（独立） | person_id, has_bio, bio_lines |
 | **candidate** | 候选句 | sentence, book, juan, status, person |
 
 **证据三态**：`有明文` / `推断` / `阙疑`。  
-**卡片 status**：本发布版统一为 `已校`；历史工作流字段不再对外展示。
+**校录状态**：本发布版人物卡均为 `已校`；前端不展示工作流字段。
 
 ---
 
@@ -155,7 +156,7 @@ quotes = pd.read_sql("SELECT * FROM source", con)
 # 例：东汉外戚侍中
 df = persons[(persons.dynasty_primary == "東漢") & (persons.is_外戚 == 1)]
 
-# 例：仅用已校
+# 例：如需按校录状态过滤（本版均为已校）
 # persons = persons[persons.status == "已校"]
 
 con.close()
