@@ -28,7 +28,7 @@ INCLUDE = [
 ]
 
 # 排除源码目录里的归档与 pyc
-SKIP_PARTS = {"_archive", "__pycache__", "_backup"}
+SKIP_PARTS = {"_archive", "__pycache__"}
 
 
 def copy_tree(src: Path, dest: Path) -> None:
@@ -38,6 +38,8 @@ def copy_tree(src: Path, dest: Path) -> None:
         return
     for p in src.rglob("*"):
         if any(s in p.parts for s in SKIP_PARTS):
+            continue
+        if any(part.startswith("_backup") for part in p.parts):
             continue
         if p.suffix in {".pyc", ".db-journal", ".db-wal", ".db-shm"}:
             continue
