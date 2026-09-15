@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>侍中时间轴 · 两汉侍中数据库</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* 时间轴页：偏纸本档案，与暗色名录区分，但保持同一套紫主色 */
+    body.tl-theme {
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(126,12,110,0.08), transparent 55%),
+        linear-gradient(180deg, #faf6f9 0%, #f3ebf3 40%, #ebe0eb 100%);
+      background-attachment: fixed;
+      color: #1a0a18;
+    }
+    body.tl-theme::before { display: none; }
+    body.tl-theme .site-header {
+      background: rgba(255,252,255,0.92);
+      border-bottom: 1px solid rgba(126,12,110,0.12);
+      color: #1a0a18;
+    }
+    body.tl-theme .brand-title { color: #1a0a18; }
+    body.tl-theme .brand-kicker { color: #8a6d84; }
+    body.tl-theme .header-meta { color: #5c4558; }
+    body.tl-theme .nav-link {
+      color: #7e0c6e;
+      border-color: rgba(126,12,110,0.25);
+    }
+    body.tl-theme .site-footer {
+      color: #8a6d84;
+      border-top: 1px solid rgba(126,12,110,0.1);
+    }
+
+    .tl-intro {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 20px 8px;
+    }
+    .tl-intro h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.06em;
+      margin: 0 0 10px;
+      color: #1a0a18;
+    }
+    .tl-intro p {
+      margin: 0 0 8px;
+      max-width: 46em;
+      color: #5c4558;
+      font-size: 0.95rem;
+    }
+    .tl-intro .note {
+      font-size: 0.82rem;
+      color: #8a6d84;
+    }
+    .tl-meta-line {
+      margin: 10px 0 0;
+      font-size: 0.86rem;
+      color: #7e0c6e;
+      font-weight: 500;
+    }
+
+    .tl-stage {
+      max-width: 960px;
+      margin: 18px auto 0;
+      border-radius: 16px;
+      border: 1px solid rgba(126,12,110,0.14);
+      background: #fffafd;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(126,12,110,0.08);
+    }
+    #tl-canvas {
+      width: 100%;
+      height: 560px;
+      display: block;
+      cursor: crosshair;
+    }
+    .tl-ctrl {
+      max-width: 960px;
+      margin: 12px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 20px;
+      align-items: center;
+    }
+    .tl-ctrl .chip {
+      border-color: rgba(126,12,110,0.2);
+      background: #fff;
+      color: #5c4558;
+    }
+    .tl-ctrl .chip:hover { color: #7e0c6e; border-color: #7e0c6e; }
+    .tl-ctrl .chip.active {
+      background: #7e0c6e;
+      color: #fff;
+      border-color: #7e0c6e;
+    }
+    .tl-ctrl .hint {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: #8a6d84;
+    }
+    .tl-legend {
+      max-width: 960px;
+      margin: 10px auto 0;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 18px;
+      font-size: 0.8rem;
+      color: #5c4558;
+    }
+    .tl-legend i {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .tl-legend .lg-era {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #7e0c6e;
+    }
+    .tl-legend .lg-reign {
+      width: 18px; height: 8px; border-radius: 2px;
+      background: rgba(163,61,144,0.35);
+      border: 1px solid rgba(163,61,144,0.7);
+    }
+    .tl-legend .lg-life {
+      width: 18px; height: 6px; border-radius: 3px;
+      background: rgba(126,12,110,0.2);
+    }
+    .tl-legend .lg-dyn {
+      width: 18px; height: 10px; border-radius: 2px;
+      background: rgba(126,12,110,0.1);
+      border-left: 2px solid #7e0c6e;
+    }
+
+    .tl-list-wrap {
+      max-width: 960px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+    }
+    .tl-list-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+      color: #1a0a18;
+    }
+    .tl-list {
+      display: grid;
+      gap: 4px;
+      max-height: 420px;
+      overflow-y: auto;
+      border: 1px solid rgba(126,12,110,0.1);
+      border-radius: 12px;
+      background: #fff;
+      padding: 8px;
+    }
+    .tl-row {
+      display: grid;
+      grid-template-columns: 3.2em 7em 1fr 5.5em 1.4fr;
+      gap: 8px;
+      align-items: baseline;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: #faf6f9;
+      color: #1a0a18;
+    }
+    .tl-row:hover {
+      background: rgba(126,12,110,0.06);
+      border-color: rgba(126,12,110,0.15);
+    }
+    .tl-row.on {
+      background: rgba(126,12,110,0.1);
+      border-color: rgba(126,12,110,0.35);
+    }
+    .tl-prec {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      text-align: center;
+      border: 1px solid transparent;
+    }
+    .tl-prec.p-era { background: rgba(126,12,110,0.12); color: #7e0c6e; border-color: rgba(126,12,110,0.25); }
+    .tl-prec.p-reign { background: rgba(163,61,144,0.1); color: #a33d90; border-color: rgba(163,61,144,0.25); }
+    .tl-prec.p-exact { background: rgba(90,20,100,0.08); color: #5a1464; border-color: rgba(90,20,100,0.2); }
+    .tl-year {
+      font-variant-numeric: tabular-nums;
+      color: #7e0c6e;
+      font-weight: 600;
+    }
+    .tl-name { font-weight: 600; color: #1a0a18; }
+    .tl-style { font-weight: 400; color: #8a6d84; }
+    .tl-dyn { color: #8a6d84; font-size: 0.8rem; }
+    .tl-nat { color: #5c4558; font-size: 0.82rem; }
+
+    .tl-agg-wrap {
+      max-width: 960px;
+      margin: 28px auto 60px;
+      padding: 0 20px;
+    }
+    .tl-agg-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      margin: 0 0 6px;
+      color: #1a0a18;
+    }
+    .tl-agg-wrap .note {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      color: #8a6d84;
+    }
+    .tl-agg {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .agg-card {
+      border: 1px solid rgba(126,12,110,0.12);
+      border-left: 3px solid var(--c, #7e0c6e);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px 14px;
+      color: #1a0a18;
+    }
+    .agg-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.86rem;
+    }
+    .agg-head strong { color: #1a0a18; }
+    .agg-head span { color: #8a6d84; font-size: 0.78rem; }
+    .agg-names {
+      font-size: 0.8rem;
+      color: #5c4558;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 720px) {
+      .tl-row { grid-template-columns: 3.2em 6em 1fr; }
+      .tl-dyn, .tl-nat { grid-column: 2 / -1; font-size: 0.75rem; }
+      .tl-ctrl .hint { display: none; }
+    }
+  </style>
+</head>
+<body class="tl-theme">
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <p class="brand-kicker">Chronology</p>
+        <h1 class="brand-title"><a href="index.html" style="color:inherit;text-decoration:none">两汉侍中</a> · 时间轴</h1>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span id="tl-count">—</span> 人上轴
+      <span class="dot"></span>
+      <span id="tl-agg-count">—</span> 人仅朝代
+      <span class="dot"></span>
+      <a href="index.html" class="nav-link">关系图谱</a>
+    </div>
+  </header>
+
+  <section class="tl-intro">
+    <h2>谁在何时居侍中</h2>
+    <p>
+      横轴为公元年。本页<strong>不为仅知朝代者伪造任职区间</strong>：
+      有生卒年者画寿命；有年号纪年（如「建武二十年」「嘉禾中」）者以圆点定位；
+      仅知帝号在位期（如「灵帝时」）者以宽带示意；其余只计入朝代聚合，不占个人横条。
+    </p>
+    <p class="note">
+      两汉侍中多为加官近臣，正史常不载拜罢年月。假精度比空白更误导——故可考者上轴，不可考者聚合。
+      横轴为<strong>折线刻度</strong>：汉末—三国段视觉拉宽，魏、蜀、吴色带可分辨。滚轮缩放，拖拽平移；点击名录可在图上高亮。
+    </p>
+    <p class="tl-meta-line" id="tl-meta-note">加载中…</p>
+  </section>
+
+  <div class="tl-ctrl">
+    <button type="button" class="chip active" data-range="all">全部</button>
+    <button type="button" class="chip" data-range="han">两汉</button>
+    <button type="button" class="chip" data-range="wei">三国以降</button>
+    <button type="button" class="chip active" id="tl-toggle-life">寿命条：开</button>
+    <span class="hint">滚轮缩放 · 拖拽平移</span>
+  </div>
+
+  <div class="tl-legend">
+    <span><i class="lg-era"></i>年号可定（点）</span>
+    <span><i class="lg-reign"></i>帝号在位期（带）</span>
+    <span><i class="lg-life"></i>生卒可考（淡条）</span>
+    <span><i class="lg-dyn"></i>仅知朝代（不画个人条）</span>
+    <span><i style="width:10px;height:10px;border-radius:2px;background:#6b3fc4;display:inline-block;vertical-align:middle;margin-right:4px"></i>魏</span>
+    <span><i style="width:10px;height:10px;border-radius:2px;background:#b03a6a;display:inline-block;vertical-align:middle;margin-right:4px"></i>蜀</span>
+    <span><i style="width:10px;height:10px;border-radius:2px;background:#3d6fb5;display:inline-block;vertical-align:middle;margin-right:4px"></i>吴</span>
+    <span style="color:#8a5aaa">轴：汉末三国已拉宽</span>
+  </div>
+
+  <section class="tl-stage">
+    <canvas id="tl-canvas"></canvas>
+  </section>
+
+  <section class="tl-list-wrap">
+    <h3>可定位名录</h3>
+    <div class="tl-list" id="tl-list"></div>
+  </section>
+
+  <section class="tl-agg-wrap">
+    <h3>仅知朝代（聚合）</h3>
+    <p class="note">下列人物卡片未载生卒或年号，无法落到具体年份。按朝代归并，避免与可考者混在同一精度上。</p>
+    <div class="tl-agg" id="tl-agg"></div>
+  </section>
+
+  <footer class="site-footer">
+    <p>两汉侍中数据库 · 时间轴</p>
+  </footer>
+
+  <script src="assets/timeline.js"></script>
+</body>
+</html>

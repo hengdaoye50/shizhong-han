@@ -1,0 +1,17 @@
+# 原文语料体积大，不入 git（可用 sources/*.py 重拉）
+data/raw/
+vendors/
+
+# 中间缓存
+__pycache__/
+*.pyc
+.venv/
+data/db/*.db-journal
+data/db/*.db-wal
+data/db/*.db-shm
+
+# 系统
+.DS_Store
+Thumbs.db
+
+data/cards/_backup*/
