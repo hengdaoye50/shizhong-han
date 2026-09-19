@@ -195,10 +195,11 @@ con.close()
 & $env:MIMO_PYTHON -m http.server 8765 --directory shizhongdata
 # http://127.0.0.1:8765/            图谱 + 名录
 # http://127.0.0.1:8765/timeline.html 时间轴
+# http://127.0.0.1:8765/zhidu.html   制度沿革 + 名录核对
 # http://127.0.0.1:8765/about.html   方法说明
 ```
 
-静态站三页共用浅色纸本主题与顶栏导航；方法说明页与本 README 对应。  
+静态站页面共用浅色纸本主题与顶栏导航。制度沿革页数据由 `sources/build_institution_json.py` + `sources/export_institution_web.py` 生成；名录核对见 `docs/roster_gap_report.md`。  
 部署：将 `shizhongdata/` 放入 Hugo `static/`。  
 仓库：[hengdaoye50/shizhong-han](https://github.com/hengdaoye50/shizhong-han)
 

@@ -30,6 +30,7 @@
   <nav class="site-nav" aria-label="站点导航">
     <a href="index.html">图谱名录</a>
     <a href="timeline.html">时间轴</a>
+    <a href="zhidu.html">制度沿革</a>
     <a href="about.html" class="active">方法说明</a>
     <a class="nav-ext" href="https://github.com/hengdaoye50/shizhong-han" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
@@ -59,9 +60,13 @@
     </p>
     <ul>
       <li><strong>被表荐而未就任</strong>者单独标注（如郑玄），统计「曾任侍中」时应排除。</li>
-      <li>制度性、无名可考的条目不建人物卡。</li>
+      <li>制度性、无名可考的条目不建人物卡，编入<strong>制度沿革</strong>页。</li>
       <li>侍中在西汉多为加官近臣；东汉渐为少府属官、比二千石，「无员」而亲近顾问。</li>
     </ul>
+    <p>
+      <strong>制度沿革页</strong>（<a href="zhidu.html">zhidu.html</a>）按演变阶段梳理侍中职官制度史料，
+      并展示与名录交叉核对后的拟补审定队列。
+    </p>
 
     <h3>2. 资料来源</h3>
     <table class="about-table">
@@ -75,7 +80,11 @@
         </tr>
         <tr>
           <td>编年与辑佚</td>
-          <td>《前汉纪》《后汉纪》《东观汉记》辑本、《全汉文》《全后汉文》</td>
+          <td>《前汉纪》《后汉纪》《东观汉记》辑本、《全汉文》《全后汉文》（含辑《汉官仪》）</td>
+        </tr>
+        <tr>
+          <td>制度典章</td>
+          <td>《独断》《汉官旧仪》《西汉会要》《东汉会要》职官相关卷（维基文库）</td>
         </tr>
         <tr>
           <td>金石</td>
@@ -85,7 +94,7 @@
           <td>开源镜像</td>
           <td>
             <a href="https://github.com/hunterhug/china-history" target="_blank" rel="noopener">china-history</a> ·
-            <a href="https://github.com/kanripo" target="_blank" rel="noopener">Kanripo</a>
+            <a href="https://github.com/kanripo" target="_blank" rel="noopener">Kanripo</a> · 维基文库 API
           </td>
         </tr>
       </tbody>
@@ -121,6 +130,7 @@
     <pre><code>&amp; $env:MIMO_PYTHON -m http.server 8765 --directory shizhongdata
 # http://127.0.0.1:8765/            图谱 + 名录
 # http://127.0.0.1:8765/timeline.html
+# http://127.0.0.1:8765/zhidu.html  制度沿革
 # http://127.0.0.1:8765/about.html</code></pre>
     <p><strong>SQLite / pandas</strong>：</p>
     <pre><code>import sqlite3, pandas as pd

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>制度沿革 · 两汉侍中数据库</title>
+  <meta name="description" content="两汉侍中职官制度史料编年梳理与名录核对" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/zhidu.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div>
+        <h1 class="brand-title brand-title--calli">两汉侍中数据库</h1>
+      </div>
+    </div>
+    <div class="header-meta">
+      制度沿革
+      <span class="dot"></span>
+      <span id="stat-roster">—</span> 人名录
+      <span class="dot"></span>
+      <span id="stat-gaps">—</span> 拟补
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="站点导航">
+    <a href="index.html">图谱名录</a>
+    <a href="timeline.html">时间轴</a>
+    <a href="zhidu.html" class="active">制度沿革</a>
+    <a href="about.html">方法说明</a>
+    <a class="nav-ext" href="https://github.com/hengdaoye50/shizhong-han" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+
+  <main class="zhidu-wrap">
+    <header class="zhidu-hero">
+      <h2>侍中制度沿革</h2>
+      <p class="lead">
+        自侍中名官以来的制度史料，按演变阶段编排：渊源与名义 → 西汉加官与入禁 →
+        职掌扩展 → 明经充侍 → 新莽波动 → 东汉少府属官化 → 外戚近侍 →
+        士人侍中与中常侍分野 → 汉魏典制度。
+      </p>
+      <p class="lead" style="font-size:0.86rem;color:#5c4558">
+        <strong>史料来源与体例：</strong>
+        ① 正史职官表志；② 制度专书与辑佚（《汉官六种》孙星衍辑、《独断》《汉官旧仪》、辑《汉官仪》）；
+        ③ 政书与十通（《通典》《文献通考》《续通典》《唐六典》、两汉会要、《汉制考》）；
+        ④ 类书与职官专书（《职官分纪》《初学记》《北堂书钞》《艺文类聚》《太平御览》《册府元龟》《玉海》《历代职官表》）。
+        开源入口：维基文库 · Kanripo（KR2l0023）· 殆知阁 daizhigev20。
+        <strong>引文一律简体</strong>，标明书名/卷次；类书与政书为汇编或转引；引文均为语料可检索原句，不作合成。
+        <span id="zhidu-updated"></span>
+      </p>
+      <div class="zhidu-stats">
+        <div class="zhidu-stat"><strong id="stat-phases">—</strong><span>制度阶段</span></div>
+        <div class="zhidu-stat"><strong id="stat-quotes">—</strong><span>页面史料句</span></div>
+        <div class="zhidu-stat"><strong id="stat-corpus">—</strong><span>语料扫描句</span></div>
+        <div class="zhidu-stat"><strong id="stat-gaps">—</strong><span>拟补审定</span></div>
+      </div>
+    </header>
+
+    <div class="phase-rail" id="phase-rail" aria-label="制度阶段"></div>
+    <div id="phase-host"></div>
+
+    <section class="section-block" id="roster-check">
+      <h3>名录核对 · 缺漏审定队列</h3>
+      <p class="lead">
+        以制度/传记语料中「侍中」任职句对照 person 表（258 人）。下列名单经人工复核噪声后保留，
+        供下一步建卡与出处补录。正式入库请走卡片模板与证据三态流程。
+      </p>
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>推定朝代</th>
+            <th>置信</th>
+            <th>状态</th>
+            <th>史料要点</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody id="gap-body"></tbody>
+      </table>
+      <ul class="note-list" id="roster-notes"></ul>
+      <div class="source-box">
+        <h4>制度页主要语料来源</h4>
+        <ul id="source-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>两汉侍中 · 制度沿革与名录核对</p>
+  </footer>
+
+  <script src="assets/zhidu.js"></script>
+</body>
+</html>

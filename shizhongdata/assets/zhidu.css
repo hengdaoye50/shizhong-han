@@ -1,0 +1,318 @@
+/* 制度沿革页 — 与全站浅色纸本主题一致 */
+.zhidu-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 22px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.zhidu-hero h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.zhidu-hero .lead {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  max-width: 46em;
+  margin: 0 0 10px;
+  line-height: 1.65;
+}
+
+.zhidu-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 22px;
+}
+
+.zhidu-stat {
+  border: 1px solid rgba(126, 12, 110, 0.14);
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-width: 100px;
+}
+
+.zhidu-stat strong {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.zhidu-stat span {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+.phase-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  position: sticky;
+  top: 118px;
+  z-index: 20;
+  padding: 10px 0;
+  background: linear-gradient(180deg, rgba(250, 246, 249, 0.96), rgba(250, 246, 249, 0.88));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(126, 12, 110, 0.08);
+}
+
+.phase-rail button {
+  border: 1px solid rgba(126, 12, 110, 0.2);
+  background: #fff;
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.phase-rail button:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.phase-rail button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.phase-section {
+  border: 1px solid rgba(126, 12, 110, 0.14);
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px 22px 18px;
+  margin: 0 0 18px;
+  box-shadow: 0 6px 24px rgba(126, 12, 110, 0.05);
+}
+
+.phase-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.phase-range {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--primary);
+  border: 1px solid rgba(126, 12, 110, 0.25);
+  border-radius: 999px;
+  padding: 2px 10px;
+  margin-bottom: 10px;
+}
+
+.phase-summary {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0 0 12px;
+  max-width: 52em;
+}
+
+.theme-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+
+.theme-chips span {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  background: rgba(126, 12, 110, 0.06);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.curated-box {
+  border-left: 3px solid var(--primary);
+  background: rgba(126, 12, 110, 0.05);
+  border-radius: 0 10px 10px 0;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+}
+
+.curated-box p {
+  margin: 0 0 6px;
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.curated-box p:last-child {
+  margin-bottom: 0;
+}
+
+.quote-list {
+  display: grid;
+  gap: 10px;
+}
+
+.quote-card {
+  border: 1px solid rgba(126, 12, 110, 0.1);
+  background: var(--panel-2, #faf6f9);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.quote-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  color: var(--primary);
+}
+
+.quote-meta .book {
+  font-weight: 500;
+}
+
+.quote-meta .juan {
+  color: var(--ink-3);
+}
+
+.quote-meta .kind {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  border: 1px solid rgba(126, 12, 110, 0.15);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.quote-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.section-block {
+  margin-top: 36px;
+  border-top: 1px solid rgba(126, 12, 110, 0.12);
+  padding-top: 8px;
+}
+
+.section-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin: 20px 0 8px;
+}
+
+.section-block .lead {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  max-width: 48em;
+}
+
+.gap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin: 12px 0 8px;
+}
+
+.gap-table th,
+.gap-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(126, 12, 110, 0.1);
+  color: var(--ink-2);
+  vertical-align: top;
+}
+
+.gap-table th {
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba(126, 12, 110, 0.04);
+}
+
+.gap-table .name {
+  color: var(--primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  border-radius: 999px;
+  padding: 2px 8px;
+  border: 1px solid rgba(126, 12, 110, 0.2);
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.badge.high {
+  background: rgba(126, 12, 110, 0.1);
+}
+
+.badge.mid {
+  background: rgba(90, 70, 90, 0.06);
+}
+
+.note-list {
+  padding-left: 1.2em;
+  margin: 10px 0 0;
+}
+
+.note-list li {
+  font-size: 0.86rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+
+.source-box {
+  margin-top: 18px;
+  border: 1px dashed rgba(126, 12, 110, 0.22);
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #fff;
+}
+
+.source-box h4 {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.source-box ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.source-box li {
+  font-size: 0.84rem;
+  color: var(--ink-2);
+  margin-bottom: 4px;
+}
+
+@media (max-width: 720px) {
+  .phase-rail {
+    top: 0;
+    position: relative;
+  }
+  .gap-table {
+    display: block;
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "book": "汉制考",
+    "path": "data\\raw\\汉制考\\殆知阁_汉制攷.txt",
+    "status": "ok",
+    "size": 36418,
+    "shizhong": 4
+  },
+  {
+    "book": "汉官旧仪",
+    "path": "data\\raw\\汉官旧仪\\殆知阁_汉官旧仪.txt",
+    "status": "ok",
+    "size": 11422,
+    "shizhong": 18
+  },
+  {
+    "book": "通典",
+    "path": "data\\raw\\通典\\殆知阁_通典.txt",
+    "status": "ok",
+    "size": 2065129,
+    "shizhong": 833
+  },
+  {
+    "book": "文献通考",
+    "path": "data\\raw\\文献通考\\殆知阁_文献通考.txt",
+    "status": "ok",
+    "size": 4830840,
+    "shizhong": 753
+  },
+  {
+    "book": "续通典",
+    "path": "data\\raw\\续通典\\殆知阁_续通典.txt",
+    "status": "ok",
+    "size": 1500232,
+    "shizhong": 129
+  },
+  {
+    "book": "西汉会要",
+    "path": "data\\raw\\西汉会要\\殆知阁_西汉会要.txt",
+    "status": "ok",
+    "size": 300947,
+    "shizhong": 40
+  },
+  {
+    "book": "东汉会要",
+    "path": "data\\raw\\东汉会要\\殆知阁_东汉会要.txt",
+    "status": "ok",
+    "size": 193389,
+    "shizhong": 68
+  },
+  {
+    "book": "补汉兵志",
+    "path": "data\\raw\\补汉兵志\\殆知阁_补汉兵志.txt",
+    "status": "ok",
+    "size": 24074,
+    "shizhong": 2
+  },
+  {
+    "book": "唐六典",
+    "path": "data\\raw\\唐六典\\殆知阁_唐六典.txt",
+    "status": "ok",
+    "size": 249392,
+    "shizhong": 80
+  },
+  {
+    "book": "历代职官表",
+    "path": "data\\raw\\历代职官表\\殆知阁_钦定历代职官表.txt",
+    "status": "ok",
+    "size": 748431,
+    "shizhong": 165
+  },
+  {
+    "book": "悬泉汉简",
+    "path": "data\\raw\\悬泉汉简\\殆知阁_敦煌悬泉汉简.txt",
+    "status": "ok",
+    "size": 19527,
+    "shizhong": 0
+  },
+  {
+    "book": "百官箴",
+    "path": "data\\raw\\百官箴\\殆知阁_百官箴.txt",
+    "status": "ok",
+    "size": 29098,
+    "shizhong": 0
+  },
+  {
+    "book": "职官分纪",
+    "path": "data\\raw\\职官分纪\\殆知阁_职官分纪.txt",
+    "status": "ok",
+    "size": 821247,
+    "shizhong": 439
+  },
+  {
+    "book": "北堂书钞",
+    "path": "data\\raw\\北堂书钞\\殆知阁_北堂书钞.txt",
+    "status": "ok",
+    "size": 1042699,
+    "shizhong": 174
+  },
+  {
+    "book": "初学记",
+    "path": "data\\raw\\初学记\\殆知阁_初学记.txt",
+    "status": "ok",
+    "size": 654688,
+    "shizhong": 116
+  },
+  {
+    "book": "艺文类聚",
+    "path": "data\\raw\\艺文类聚\\殆知阁_艺文类聚.txt",
+    "status": "ok",
+    "size": 1211793,
+    "shizhong": 123
+  },
+  {
+    "book": "太平御览",
+    "path": "data\\raw\\太平御览\\殆知阁_太平御览.txt",
+    "status": "ok",
+    "size": 4892901,
+    "shizhong": 678
+  },
+  {
+    "book": "册府元龟",
+    "path": "data\\raw\\册府元龟\\殆知阁_册府元龟.txt",
+    "status": "ok",
+    "size": 9059305,
+    "shizhong": 3140
+  },
+  {
+    "book": "玉海",
+    "path": "data\\raw\\玉海\\殆知阁_玉海.txt",
+    "status": "ok",
+    "size": 2918408,
+    "shizhong": 353
+  },
+  {
+    "book": "两汉诏令",
+    "path": "data\\raw\\两汉诏令\\殆知阁_两汉诏令.txt",
+    "status": "ok",
+    "size": 79214,
+    "shizhong": 15
+  },
+  {
+    "book": "汉官六种",
+    "path": "data\\raw\\汉官六种\\汉官六种_KR2l0023.txt",
+    "status": "ok",
+    "size": 53078,
+    "shizhong": 70
+  }
+]

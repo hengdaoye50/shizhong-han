@@ -26,6 +26,30 @@
 & $env:MIMO_PYTHON sources/export_graph_json.py
 ```
 
+## 制度沿革与名录核对（2026-09）
+
+| 脚本 | 作用 |
+|------|------|
+| `fetch_institution_sources.py` | 维基：独断/汉官旧仪/会要等 |
+| `fetch_shitong_sources.py` | 维基：通典/文献通考/唐六典等 |
+| `fetch_nonwiki_institution.py` | **殆知阁 + Kanripo 汉官六种**（类书/政书/职官分纪等） |
+| `extract_institution.py` | 全语料「侍中」句抽取 + 初版名录对照 |
+| `build_institution_json.py` | 按制度演变阶段编排（清洗+简体+去重+政书过滤） |
+| `export_institution_web.py` | 导出前端 `shizhongdata/data/institution.json`（含拟补名单） |
+| `audit_roster_institution.py` | 名录核对 CSV + `docs/roster_gap_report.md` |
+
+```powershell
+& $env:MIMO_PYTHON sources/fetch_institution_sources.py
+& $env:MIMO_PYTHON sources/fetch_shitong_sources.py
+& $env:MIMO_PYTHON sources/extract_institution.py
+& $env:MIMO_PYTHON sources/build_institution_json.py
+& $env:MIMO_PYTHON sources/audit_roster_institution.py
+& $env:MIMO_PYTHON sources/export_institution_web.py
+```
+
+制度史料与十通边界见 `docs/shitong_sources.md`。  
+页面：`shizhongdata/zhidu.html`。拟补人物须人工审定后建卡，勿自动入正式库。
+
 ## 采集与建库（低频）
 
 - `wiki_fetch.py` / `import_mirror.py` / `import_kanripo.py` — 语料

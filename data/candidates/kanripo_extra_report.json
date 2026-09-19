@@ -1,0 +1,44 @@
+[
+  {
+    "repo": "bkkbooks/KR3k0020",
+    "book": "职官分纪",
+    "path": "data\\raw\\职官分纪\\bkkbooks_KR3k0020.txt",
+    "shizhong": 392,
+    "size": 514394
+  },
+  {
+    "repo": "bkkbooks/KR2l0015",
+    "book": "历代职官表",
+    "path": "data\\raw\\历代职官表\\bkkbooks_KR2l0015.txt",
+    "shizhong": 87,
+    "size": 188341
+  },
+  {
+    "repo": "bkkbooks/KR2m0008",
+    "book": "汉制考",
+    "path": "data\\raw\\汉制考\\bkkbooks_KR2m0008.txt",
+    "shizhong": 4,
+    "size": 33689
+  },
+  {
+    "repo": "bkkbooks/KR2m0020",
+    "book": "汉官旧仪",
+    "path": "data\\raw\\汉官旧仪\\bkkbooks_KR2m0020.txt",
+    "shizhong": 18,
+    "size": 10618
+  },
+  {
+    "repo": "bkkbooks/KR6v0392",
+    "book": "册府元龟选辑",
+    "path": "data\\raw\\册府元龟选辑\\bkkbooks_KR6v0392.txt",
+    "shizhong": 8,
+    "size": 27125
+  },
+  {
+    "repo": "bkkbooks/KR2m0007",
+    "book": "东汉会要",
+    "path": "data\\raw\\东汉会要\\bkkbooks_KR2m0007.txt",
+    "shizhong": 28,
+    "size": 68806
+  }
+]

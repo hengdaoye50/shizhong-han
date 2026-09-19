@@ -89,8 +89,19 @@
 ## Web UI
 
 - 目录：`shizhongdata/` → 拷到 Hugo `static/shizhongdata/` 部署 `jinhuazhang.top/shizhongdata/`
-- 数据：`export_web_json.py` → `shizhong.json`；生平 `build_bio_store.py` → `bio.json`
+- 数据：`export_web_json.py` → `shizhong.json`；生平 `build_bio_store.py` → `bio.json`；制度 `export_institution_web.py` → `institution.json`
+- 页面：`index.html` 图谱名录 · `timeline.html` 时间轴 · `zhidu.html` **制度沿革+名录核对** · `about.html` 方法说明
 - 详情：生平 / 任职 / 原典 / 关系；主色 `#7E0C6E`
+
+## 制度沿革与名录核对（2026-09）
+
+- 制度语料：维基 + **殆知阁 daizhigev20** + **Kanripo 汉官六种 KR2l0023**
+  - `data/raw/{獨斷,漢官舊儀,漢官六種,通典,文献通考,唐六典,职官分纪,初学记,北堂书钞,册府元龟,太平御览,玉海,西汉会要,东汉会要,汉制考,...}`
+- 来源边界：`docs/shitong_sources.md`
+- 流水线：`fetch_institution_sources.py` → `fetch_shitong_sources.py` → `fetch_nonwiki_institution.py` → `build_institution_json.py` → `export_institution_web.py`
+- **引文体例**：显示一律简体；去 wiki 标记；只收可核验原句；类书/政书标明汇编性质；提要在 curated_points
+- 拟补草稿（**未入正式库**）：`data/candidates/draft_cards/`
+- 原则：自动抽取只出候选；制度条不建人卡
 
 ## 时间轴
 
