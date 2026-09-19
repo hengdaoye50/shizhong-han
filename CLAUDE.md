@@ -62,12 +62,13 @@
 
 改动 `sources/` 后至少跑通一次试点：拉《漢書》卷 068 → 抽取 → 检查 candidates CSV 含霍光、金日磾、金安上等相关句。
 
-## 全量建卡（现状 2026-09-15）
+## 全量建卡（现状 2026-09 拟补后）
 
 - 候选句：`data/candidates/shizhong_candidates.csv`
-- 卡片：`data/cards/`（**258** 人）
-- 库：`data/db/shizhong.db`（person 258 · term 248 · source ~412 · relation 432 · person_bio 258/147）
-- 备份：`data/db/shizhong.db.bak-20260915`
+- 卡片：`data/cards/`（**268** 人；含拟补 P0260–P0269）
+- 库：`data/db/shizhong.db`（person 268 · 详见 `query_db.py --stats`）
+- 拟补审定：`docs/roster_gap_report.md`（10 建卡；张涉误抽；周珌并周毖）
+- 增量入库：`sources/upsert_cards_to_db.py`
 
 ```powershell
 & $env:MIMO_PYTHON sources/query_db.py --stats
