@@ -59,11 +59,10 @@ preview_shots/    # 截图（建议不入 git）
 
 ## 下一步
 1. ~~push 制度沿革~~（已推 `0dad4b2`）
-2. ~~拟补审定~~（已建卡 10 人；张涉误抽、周珌并卡）
-3. 入库与 Web/时间轴导出 → `query_db.py --stats` 验收
-4. 人工审 `data/candidates/enrich_raw_hits.json`
-5. 向 200+ 推生平
-6. 部署 Hugo static（含 zhidu 页）
+2. ~~拟补审定~~（已建卡 10 人；张涉误抽、周珌并卡；已推 `57254c6`）
+3. ~~enrich_raw_hits 审读~~（补/可选已写入；拒项未写；霍山弱证未写备注）
+4. 向 200+ 推生平（bio 仍有空档）
+5. 部署 Hugo static（含 zhidu 页）
 3. 人工审 `data/candidates/enrich_raw_hits.json`
 4. 向 200+ 推生平
 5. 部署 Hugo static（含 zhidu 页）
