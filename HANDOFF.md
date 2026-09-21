@@ -57,11 +57,9 @@ preview_shots/    # 截图（建议不入 git）
 - 已修：晋字、两汉筛选简繁不匹配、朝代组归并、全站浅色主题
 
 ## 下一步
-1. ~~push 制度沿革~~ `0dad4b2` · ~~拟补~~ `57254c6`
-2. ~~enrich_raw_hits 审读~~ · ~~生平扩写至 227~~ — enrich `47cbf1f` **仅本地，待 push**（GitHub 代理曾失败）
-3. 本地 push 重试或用户终端 `git push origin main`
-4. 部署 Hugo static（含 zhidu 页）— 可与 push 并行
-5. 可选：向剩余弱生平再挖 raw 本传（仍须带出处）
+1. ~~制度沿革 / 拟补 / enrich / 生平 / nature+时间轴~~ 均已推远端，`origin/main` = **`fd4a38e`**
+2. 部署 Hugo static（拷 `shizhongdata/`，含 zhidu）
+3. 可选：继续弱生平深挖、enrich 拒项人工改判、体制沿革语料扩源
 3. 人工审 `data/candidates/enrich_raw_hits.json`
 4. 向 200+ 推生平
 5. 部署 Hugo static（含 zhidu 页）
