@@ -9,12 +9,11 @@
 - 已忽略：`data/raw/`、`vendors/`、`preview_shots/`、`data/db/*.bak*`、`*.pdf`
 - 推送前仍应用 `git status` / `git diff` 审阅；**勿含**备份库与商业 PDF
 
-## 规模（拟补建卡后）
-- 卡片 **268**（原 258 + 拟补 10：P0260–P0269）
-- 拟补：辛毗/张辟疆/孔安国/卓茂/卫觊/孙资/丁冲/金建/李祯/梁安国
-- 不建：张涉（=金涉误抽 P0222）· 周珌（并入周毖 P0056）
-- term / source / relation / person_bio 以 `query_db.py --stats` 为准
-- 时间轴与 Web 导出后需重跑核对
+## 规模（nature 回填后）
+- 卡片 **268** · person_bio 有实义 **227** · source ~478 · relation 464
+- 时间轴：plotted **177**（era 35 / reign 91 / exact 51）· 仅朝代聚合 91
+- nature 回填脚本：`sources/apply_nature_clues.py`（只写原典可核验表述；纠郭昌/李尤/郑均/王歙误项）
+- 待 push：enrich + 生平扩写 + nature/时间轴（本地多提交，网络曾失败）
 
 ## 目录（整理后）
 ```
@@ -58,11 +57,11 @@ preview_shots/    # 截图（建议不入 git）
 - 已修：晋字、两汉筛选简繁不匹配、朝代组归并、全站浅色主题
 
 ## 下一步
-1. ~~push 制度沿革~~（已推 `0dad4b2`）
-2. ~~拟补审定~~（已建卡 10 人；张涉误抽、周珌并卡；已推 `57254c6`）
-3. ~~enrich_raw_hits 审读~~（补/可选已写入；拒项未写；霍山弱证未写备注）
-4. 向 200+ 推生平（bio 仍有空档）
-5. 部署 Hugo static（含 zhidu 页）
+1. ~~push 制度沿革~~ `0dad4b2` · ~~拟补~~ `57254c6`
+2. ~~enrich_raw_hits 审读~~ · ~~生平扩写至 227~~ — enrich `47cbf1f` **仅本地，待 push**（GitHub 代理曾失败）
+3. 本地 push 重试或用户终端 `git push origin main`
+4. 部署 Hugo static（含 zhidu 页）— 可与 push 并行
+5. 可选：向剩余弱生平再挖 raw 本传（仍须带出处）
 3. 人工审 `data/candidates/enrich_raw_hits.json`
 4. 向 200+ 推生平
 5. 部署 Hugo static（含 zhidu 页）
