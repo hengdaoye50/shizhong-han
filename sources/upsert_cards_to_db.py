@@ -71,14 +71,14 @@ def parse_front_matter(text: str) -> dict:
             data[k.strip()] = v.strip()
             continue
         if section == "sources":
-            if line.strip().startswith("- book:"):
+            if line.strip().startswith("- book:") or line.strip().startswith("- quote:"):
                 if cur_src:
                     data["sources"].append(cur_src)
-                cur_src = {
-                    "book": line.split(":", 1)[1].strip(),
-                    "juan": "",
-                    "quote": "",
-                }
+                cur_src = {"book": "", "juan": "", "quote": ""}
+                if line.strip().startswith("- book:") or line.strip().startswith("- quote:"):
+                    cur_src["book"] = line.split(":", 1)[1].strip()
+                else:
+                    cur_src["quote"] = line.split(":", 1)[1].strip().strip("「」")
             elif cur_src is not None and "juan:" in line:
                 cur_src["juan"] = line.split(":", 1)[1].strip()
             elif cur_src is not None and "quote:" in line:
@@ -245,6 +245,46 @@ def main() -> None:
     for k, v in list(name_to_id.items()):
         name_to_id[k] = id_by_name.get(k, v)
     n_rel = upsert_default_relations(cur, name_to_id)
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
+    con.commit()
+    # 幂等：去掉重复 relation
+    cur.execute("""DELETE FROM relation WHERE rowid NOT IN """
+               """(SELECT MIN(rowid) FROM relation """
+               """ GROUP BY from_id, to_id, rel_type, COALESCE(note,''))""")
 
     cur.execute(
         """UPDATE person SET
