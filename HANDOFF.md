@@ -57,7 +57,7 @@ preview_shots/    # 截图（建议不入 git）
 - 已修：晋字、两汉筛选简繁不匹配、朝代组归并、全站浅色主题
 
 ## 下一步
-1. ~~制度沿革 / 拟补 / enrich / 生平 / nature+时间轴~~ 均已推远端，`origin/main` = **`fd4a38e`**
+1. ~~16 条待考/阙疑人工审定~~（2026-09 网络核证收口）：张兴/是仪改回有明文；何休/孙期/张玄/萧育/许慎/钟兴/郭昌/关统落阙疑；B 组清触发词。流水线已全量重跑。
 2. 部署 Hugo static（拷 `shizhongdata/`，含 zhidu）
 3. 可选：继续弱生平深挖、enrich 拒项人工改判、体制沿革语料扩源
 3. 人工审 `data/candidates/enrich_raw_hits.json`
